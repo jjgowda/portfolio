@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeevan Gowda - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Big+Shoulders+Display:wght@800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Light Theme (Default) - Blue Accent */
+            --theme-accent: rgb(59, 130, 246); /* Blue-500 */
+            --theme-accent-hover: rgb(37, 99, 235); /* Blue-600 */
+            --theme-background: rgb(255, 255, 255); /* White */
+            --theme-card-bg: rgb(249, 250, 251); /* Tailwind gray-50 */
+            --theme-text-primary: rgb(31, 41, 55); /* Tailwind gray-800 */
+            --theme-text-secondary: rgb(75, 85, 99); /* Tailwind gray-600 */
+            --theme-text-tertiary: rgb(107, 114, 128); /* Tailwind gray-500 */
+            --theme-text-on-accent: rgb(255, 255, 255); /* White text for on blue buttons */
+            --theme-border-subtle: rgb(229, 231, 235); /* Tailwind gray-200 */
+            --theme-hero-text-color: var(--theme-accent); /* Hero name color (Blue) */
+            --theme-header-bg: rgba(255, 255, 255, 0.85);
+            --theme-signature-color: var(--theme-text-primary);
+            --theme-signature-hover-color: var(--theme-accent);
+            --theme-image-overlay-border: var(--theme-background); 
+            --theme-marquee-text-color: var(--theme-text-tertiary);
+            --theme-skills-section-bg: rgb(243, 244, 246); 
+            --theme-certificates-section-bg: rgb(255, 255, 255);
+        }
+
+        html.dark-theme {
+            /* Dark Theme Overrides - Yellow Accent */
+            --theme-accent: rgb(224, 241, 31); /* Villo Yellow */
+            --theme-accent-hover: rgb(200, 215, 28); 
+            --theme-background: rgb(17, 24, 39); 
+            --theme-card-bg: rgb(30, 41, 59); 
+            --theme-text-primary: rgb(226, 232, 240); 
+            --theme-text-secondary: rgb(148, 163, 184); 
+            --theme-text-tertiary: rgb(100, 116, 139); 
+            --theme-text-on-accent: rgb(17, 24, 39); 
+            --theme-border-subtle: rgb(51, 65, 85); 
+            --theme-hero-text-color: var(--theme-accent); 
+            --theme-header-bg: rgba(17, 24, 39, 0.85);
+            --theme-signature-color: var(--theme-text-primary);
+            --theme-signature-hover-color: var(--theme-accent);
+            --theme-image-overlay-border: var(--theme-background);
+            --theme-marquee-text-color: var(--theme-text-tertiary);
+            --theme-skills-section-bg: rgba(224, 241, 31, 0.03); 
+            --theme-certificates-section-bg: var(--theme-background);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--theme-background);
+            color: var(--theme-text-primary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .section {
+            padding-top: 7rem; 
+            padding-bottom: 7rem;
+        }
+        .container-custom {
+            max-width: 980px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem; 
+            padding-right: 1.5rem; 
+        }
+
+        /* Header & Theme Toggle */
+        .header {
+            background-color: var(--theme-header-bg); 
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--theme-border-subtle);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .logo-signature-svg { 
+            height: 1.8rem; 
+            width: auto; 
+            max-width: 120px; 
+            color: var(--theme-signature-color);
+            transition: color 0.3s ease;
+        }
+        .logo-signature-svg path, 
+        .logo-signature-svg circle {
+             stroke: currentColor !important; 
+             fill: currentColor !important;   
+        }
+        .logo-signature-svg path[fill="none"] {
+            fill: none !important;
+        }
+         .logo-signature-svg circle[fill="none"] {
+            fill: none !important;
+        }
+
+        .logo-signature-svg:hover {
+            color: var(--theme-signature-hover-color);
+        }
+        .nav-link {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 0.925rem; 
+            color: var(--theme-text-secondary);
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 0.25rem 0.1rem;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--theme-accent);
+        }
+        .nav-link::after { 
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1.5px;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--theme-accent);
+            transition: width 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .theme-toggle-button {
+            background-color: var(--theme-card-bg);
+            border: 1px solid var(--theme-border-subtle);
+            border-radius: 9999px;
+            padding: 0.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .theme-toggle-button:focus { outline: none; box-shadow: 0 0 0 2px var(--theme-accent); }
+        .theme-toggle-icon {
+            width: 1.25rem; 
+            height: 1.25rem; 
+            color: var(--theme-text-secondary);
+            transition: transform 0.3s ease;
+        }
+        html.dark-theme .theme-toggle-icon.sun { display: block; }
+        html:not(.dark-theme) .theme-toggle-icon.sun { display: none; }
+        html.dark-theme .theme-toggle-icon.moon { display: none; }
+        html:not(.dark-theme) .theme-toggle-icon.moon { display: block; }
+
+        /* Hero Section - Image in Text */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem; 
+            position: relative;
+            overflow: hidden; 
+        }
+        .hero-intro-text { 
+            font-family: 'DM Sans', sans-serif;
+            font-size: clamp(0.7rem, 1.5vw, 0.85rem); 
+            font-weight: 500;
+            color: var(--theme-text-tertiary); 
+            text-transform: uppercase;
+            letter-spacing: 0.18em; 
+            margin-bottom: 1.5rem; 
+            opacity: 0;
+            animation: heroTextFadeInUp 0.9s cubic-bezier(0.23, 1, 0.32, 1) 0.2s forwards;
+            position: relative; 
+            z-index: 10;
+        }
+        .hero-name-container {
+            position: relative; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        .hero-name-text {
+            font-family: 'Big Shoulders Display', sans-serif;
+            font-size: clamp(6rem, 22vw, 16rem); 
+            font-weight: 900;
+            line-height: 0.85; 
+            color: var(--theme-hero-text-color); 
+            letter-spacing: -0.05em; 
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1; 
+        }
+         .hero-name-text .char { 
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(80px) rotateX(-90deg); 
+            transform-origin: bottom;
+            animation: letterFlipUpHeroVillo 0.9s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
+        }
+        .hero-name-text .space-char { width: 0.15em; } 
+
+        .hero-image-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: clamp(130px, 28vw, 240px); 
+            height: clamp(130px, 28vw, 240px);
+            border-radius: 50%; 
+            overflow: hidden;
+            z-index: 5; 
+            border: 5px solid var(--theme-image-overlay-border); 
+            box-shadow: 0 0 0 10px rgba(0,0,0,0.03), 0 15px 35px rgba(0,0,0,0.15); 
+            opacity: 0;
+            transform-origin: center;
+            animation: heroImageRevealVillo 1.1s cubic-bezier(0.19, 1, 0.22, 1) 1s forwards; 
+        }
+        .hero-image-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes heroTextFadeInUp {
+            from { opacity: 0; transform: translateY(30px); } 
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes letterFlipUpHeroVillo { 
+            0% { opacity: 0; transform: translateY(80px) rotateX(-90deg); }
+            100% { opacity: 1; transform: translateY(0) rotateX(0deg); }
+        }
+        @keyframes heroImageRevealVillo { 
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.7) rotate(-5deg); } 
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+        }
+
+        .scroll-down-indicator { 
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeInScrollIndicator 1s ease-out 3.2s forwards, subtleBounceYScroll 2.5s infinite 3.7s;
+            z-index: 10; 
+        }
+        .scroll-down-indicator svg {
+            width: 1.75rem;
+            height: 1.75rem;
+            color: var(--theme-text-tertiary); 
+        }
+        @keyframes fadeInScrollIndicator { to { opacity: 0.6; } } 
+        @keyframes subtleBounceYScroll {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-7px); }
+        }
+
+        /* Section Titles */
+        .section-title-villo {
+            font-family: 'Big Shoulders Display', sans-serif;
+            font-size: clamp(2.8rem, 9vw, 4.8rem); 
+            font-weight: 900;
+            letter-spacing: -0.025em;
+            color: var(--theme-accent); 
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .section-subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-size: clamp(1.05rem, 2.3vw, 1.35rem);
+            color: var(--theme-text-secondary); 
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+            line-height: 1.75;
+        }
+
+        /* About Section */
+        .about-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+        .about-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--theme-text-secondary);
+            margin-bottom: 1.25rem;
+        }
+        .about-text strong {
+            color: var(--theme-text-primary);
+            font-weight: 600;
+        }
+
+        /* Education & Generic Content Entry */
+        .content-entry {
+            border-bottom: 1px solid var(--theme-border-subtle);
+            padding: 2.5rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            transition: border-color 0.3s ease;
+        }
+        .content-entry:last-child { border-bottom: none; }
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .entry-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.3rem; 
+            font-weight: 600; 
+            color: var(--theme-text-primary);
+        }
+        .entry-title a { /* Style for project links */
+            color: var(--theme-text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .entry-title a:hover {
+            color: var(--theme-accent);
+            text-decoration: underline;
+        }
+        .entry-meta {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.875rem; 
+            color: var(--theme-text-tertiary);
+            font-weight: 500;
+            text-transform: uppercase; 
+            letter-spacing: 0.04em;
+        }
+        .entry-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: var(--theme-text-secondary);
+        }
+        .entry-description {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: var(--theme-text-secondary); 
+            line-height: 1.65;
+            padding-top: 0.75rem;
+        }
+        
+        /* Skill Item */
+        #skills { 
+            background-color: var(--theme-skills-section-bg);
+            transition: background-color 0.3s ease;
+        }
+        .skill-item-villo {
+            background-color: var(--theme-card-bg);
+            border: 1px solid var(--theme-border-subtle);
+            border-radius: 0.75rem; 
+            padding: 1.75rem; 
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+        }
+        .skill-item-villo:hover {
+            background-color: rgba(var(--theme-accent-rgb-for-hover, 0,0,0), 0.05); 
+            border-color: rgba(var(--theme-accent-rgb-for-hover, 0,0,0), 0.3);
+            transform: translateY(-5px) scale(1.02); 
+        }
+        html:not(.dark-theme) .skill-item-villo:hover {
+            --theme-accent-rgb-for-hover: 59, 130, 246; /* Blue RGB */
+        }
+        html.dark-theme .skill-item-villo:hover {
+            --theme-accent-rgb-for-hover: 224, 241, 31; /* Yellow RGB */
+        }
+
+        .skill-item-villo svg {
+            width: 2.25rem; 
+            height: 2.25rem;
+            color: var(--theme-accent);
+            flex-shrink: 0;
+        }
+        .skill-name-villo {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--theme-text-primary);
+        }
+        .skill-description-villo {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--theme-text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Certificates Section */
+        #certificates {
+            background-color: var(--theme-certificates-section-bg);
+            transition: background-color 0.3s ease;
+        }
+        .certificate-item { 
+            background-color: var(--theme-card-bg);
+            border: 1px solid var(--theme-border-subtle);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+        }
+        .certificate-item:hover {
+            background-color: rgba(var(--theme-accent-rgb-for-hover, 0,0,0), 0.04);
+            border-color: rgba(var(--theme-accent-rgb-for-hover, 0,0,0), 0.25);
+            transform: translateY(-4px);
+        }
+        .certificate-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--theme-text-primary);
+            margin-bottom: 0.25rem;
+        }
+        .certificate-platform {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--theme-text-secondary);
+        }
+
+
+        /* Contact Button */
+        .contact-button-villo {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--theme-accent);
+            color: var(--theme-text-on-accent); 
+            font-weight: 600; 
+            font-size: 1rem;
+            padding: 1rem 2.75rem; 
+            border-radius: 50px;
+            transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+            display: inline-block;
+            letter-spacing: 0.03em;
+        }
+        html:not(.dark-theme) .contact-button-villo { 
+             box-shadow: 0 6px 25px rgba(59, 130, 246, 0.2);
+        }
+        html.dark-theme .contact-button-villo { 
+             box-shadow: 0 6px 25px rgba(224, 241, 31, 0.2);
+        }
+        .contact-button-villo:hover {
+            background-color: var(--theme-accent-hover);
+            transform: translateY(-4px) scale(1.04);
+        }
+        html:not(.dark-theme) .contact-button-villo:hover {
+             box-shadow: 0 10px 30px rgba(59, 130, 246, 0.25);
+        }
+        html.dark-theme .contact-button-villo:hover {
+             box-shadow: 0 10px 30px rgba(224, 241, 31, 0.25);
+        }
+
+
+        /* Footer */
+        .footer-villo {
+            background-color: var(--theme-background); 
+            border-top: 1px solid var(--theme-border-subtle);
+            color: var(--theme-text-tertiary);
+            padding: 5rem 0 3rem; 
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+        .footer-text { font-size: 0.875rem; }
+        .footer-link {
+            color: var(--theme-text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .footer-link:hover { color: var(--theme-accent); }
+
+        .marquee-container {
+            overflow: hidden;
+            padding: 2.5rem 0;
+            width: 100%;
+            border-top: 1px solid var(--theme-border-subtle);
+            border-bottom: 1px solid var(--theme-border-subtle);
+            margin-bottom: 3.5rem;
+            transition: border-color 0.3s ease;
+        }
+        .marquee-content {
+            display: flex;
+            white-space: nowrap;
+            animation: marquee 40s linear infinite; 
+            font-family: 'Big Shoulders Display', sans-serif;
+            font-size: clamp(2.8rem, 9vw, 5rem); 
+            font-weight: 900;
+            color: var(--theme-marquee-text-color); 
+            letter-spacing: -0.02em;
+            transition: color 0.3s ease;
+        }
+        .marquee-content span { padding: 0 2.5rem; }
+        .marquee-content .accent-marquee { color: var(--theme-accent); }
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); } 
+        }
+
+        /* Generic Animations */
+        .animate-scroll-reveal {
+            opacity: 0;
+            transform: translateY(60px); 
+            transition: opacity 0.9s cubic-bezier(0.19, 1, 0.22, 1), transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .animate-scroll-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .staggered-appear-villo > * {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s cubic-bezier(0.19, 1, 0.22, 1), transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+         .staggered-appear-villo.is-visible > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-break-icon {
+            display: block;
+            margin: 3rem auto;
+            width: 48px;
+            height: 48px;
+            color: var(--theme-accent);
+            opacity: 0.3;
+            transition: color 0.3s ease, opacity 0.3s ease;
+        }
+        .section-break-icon svg path {
+            animation: pulsePath 2s infinite ease-in-out;
+        }
+        @keyframes pulsePath {
+            0%, 100% { opacity: 0.5; transform: scale(0.95); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="header fixed top-0 left-0 right-0 z-50">
+        <div class="container-custom px-6 py-3.5"> 
+            <div class="flex items-center justify-between">
+                <a href="#hero" class="logo-signature-link">
+                    <svg class="logo-signature-svg" viewBox="15.343999862670898 15.413999557495117 364.3390197753906 181.73899841308594" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 289.429,76.391 C 284.295,73.394 284.481,73.154 279.533,69.917" stroke-width="5.161" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 279.533,69.917 C 277.440,68.013 277.254,68.253 275.347,66.109" stroke-width="4.627" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 275.347,66.109 C 272.393,64.680 273.253,64.205 271.160,62.301" stroke-width="4.286" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 271.160,62.301 C 269.049,58.655 269.728,59.539 270.018,55.828" stroke-width="4.839" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 270.018,55.828 C 272.311,51.741 271.333,51.991 275.727,48.974" stroke-width="4.544" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 275.727,48.974 C 280.702,45.592 280.303,45.268 286.003,42.881" stroke-width="4.246" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 286.003,42.881 C 289.329,41.223 289.265,41.213 292.854,40.215" stroke-width="3.964" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 292.854,40.215 C 298.741,38.826 298.654,38.557 304.653,37.550" stroke-width="3.631" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 304.653,37.550 C 308.443,36.696 308.447,36.731 312.265,36.027" stroke-width="3.789" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 312.265,36.027 C 316.093,35.573 316.055,35.363 319.877,34.884" stroke-width="4.012" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 319.877,34.884 C 322.386,34.439 322.373,34.430 324.825,33.742" stroke-width="4.230" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 324.825,33.742 C 327.891,33.205 327.715,32.916 330.534,31.838" stroke-width="4.586" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 330.534,31.838 C 336.044,28.030 333.410,30.349 335.862,28.030" stroke-width="4.858" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 335.862,28.030 C 331.563,29.104 335.663,28.030 329.773,31.838" stroke-width="5.267" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 329.773,31.838 C 329.255,35.464 327.947,34.626 328.631,39.073" stroke-width="4.309" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 328.631,39.073 C 327.107,45.308 327.542,45.365 326.347,51.639" stroke-width="3.478" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 326.347,51.639 C 325.546,59.625 325.394,59.588 325.205,67.632" stroke-width="3.110" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 325.205,67.632 C 324.825,77.532 324.785,77.523 324.825,87.434" stroke-width="2.667" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 324.825,87.434 C 325.053,103.998 324.825,103.998 325.205,120.563" stroke-width="3.340" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 325.205,120.563 C 325.205,124.752 325.244,124.751 325.205,128.940" stroke-width="3.754" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 325.205,128.940 C 325.417,133.521 325.205,133.510 325.205,138.080" stroke-width="3.905" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 325.205,138.080 C 324.738,141.690 325.037,141.708 324.444,145.315" stroke-width="4.373" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 324.444,145.315 C 325.628,149.768 324.167,148.735 324.064,152.169" stroke-width="4.533" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 324.064,152.169 C 321.380,154.164 322.774,154.148 318.735,154.073" stroke-width="5.144" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 318.735,154.073 C 315.897,152.888 315.861,153.974 313.026,151.788" stroke-width="4.337" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 313.026,151.788 C 306.955,149.452 306.953,149.461 300.847,147.219" stroke-width="3.462" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 300.847,147.219 C 287.450,141.201 287.164,142.217 273.443,137.318" stroke-width="2.356" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 273.443,137.318 C 255.674,132.818 255.860,132.443 237.667,129.702" stroke-width="1.865" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 237.667,129.702 C 220.397,126.961 220.469,126.726 203.032,125.132" stroke-width="1.795" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 203.032,125.132 C 187.798,124.116 187.855,123.534 172.584,122.848" stroke-width="1.890" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 172.584,122.848 C 160.422,121.487 160.394,121.831 148.226,120.563" stroke-width="2.211" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 148.226,120.563 C 135.293,119.598 135.302,119.583 122.345,119.040" stroke-width="2.223" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 122.345,119.040 C 113.206,118.556 113.218,118.646 104.076,118.659" stroke-width="2.490" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 104.076,118.659 C 96.214,118.504 96.270,118.747 88.471,119.421" stroke-width="2.783" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 88.471,119.421 C 78.533,120.917 78.517,120.599 68.680,122.848" stroke-width="2.637" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 68.680,122.848 C 60.077,124.588 60.074,124.534 51.553,126.656" stroke-width="2.669" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 51.553,126.656 C 41.273,129.306 41.238,129.158 31.001,131.987" stroke-width="3.049" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 31.001,131.987 C 28.023,132.437 28.142,132.733 25.292,133.510" stroke-width="3.902" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 25.292,133.510 C 20.344,135.672 22.694,134.531 20.344,136.176" stroke-width="4.708" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 20.344,136.176 C 22.944,136.219 20.344,136.624 25.292,135.414" stroke-width="5.027" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 25.292,135.414 C 29.536,133.628 29.605,133.935 33.665,131.606" stroke-width="3.977" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 33.665,131.606 C 38.474,129.224 38.480,129.249 43.180,126.656" stroke-width="3.702" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 43.180,126.656 C 46.756,124.491 46.847,124.655 50.411,122.467" stroke-width="3.750" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 50.411,122.467 C 57.470,118.692 57.413,118.589 64.493,114.851" stroke-width="3.173" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 64.493,114.851 C 71.756,110.907 71.743,110.886 78.956,106.855" stroke-width="3.001" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 78.956,106.855 C 83.989,104.137 83.935,104.053 88.852,101.142" stroke-width="3.246" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 88.852,101.142 C 93.913,98.065 93.885,98.044 98.748,94.669" stroke-width="3.238" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 98.748,94.669 C 102.949,91.857 102.857,91.782 106.740,88.576" stroke-width="3.615" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 106.740,88.576 C 109.887,85.625 109.990,85.764 112.830,82.484" stroke-width="3.644" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 112.830,82.484 C 115.525,79.464 115.596,79.532 118.158,76.391" stroke-width="3.707" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 118.158,76.391 C 120.252,74.240 120.093,74.133 121.964,71.821" stroke-width="4.093" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 121.964,71.821 C 123.658,69.680 123.487,69.670 124.628,67.252" stroke-width="4.229" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 124.628,67.252 C 125.116,64.755 125.561,64.920 125.770,62.301" stroke-width="4.257" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 125.770,62.301 C 126.897,59.107 126.639,59.043 127.673,55.828" stroke-width="4.042" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 127.673,55.828 C 128.557,51.849 128.610,51.872 129.196,47.831" stroke-width="3.872" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 129.196,47.831 C 129.899,43.464 129.889,43.472 130.337,39.073" stroke-width="3.751" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 130.337,39.073 C 130.617,35.839 130.660,35.849 130.718,32.599" stroke-width="3.970" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 130.718,32.599 C 131.154,29.681 130.807,29.746 130.718,26.888" stroke-width="4.091" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 130.718,26.888 C 130.535,21.122 130.203,23.588 128.815,20.414" stroke-width="4.548" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 128.815,20.414 C 125.930,21.851 127.300,19.790 124.248,24.222" stroke-width="4.960" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 124.248,24.222 C 122.224,28.167 121.743,27.753 120.442,32.219" stroke-width="4.004" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 120.442,32.219 C 118.018,37.687 118.037,37.686 115.875,43.262" stroke-width="3.486" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 115.875,43.262 C 114.230,47.603 114.212,47.587 112.830,52.020" stroke-width="3.592" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 112.830,52.020 C 111.492,55.384 111.756,55.409 110.927,58.874" stroke-width="3.846" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 110.927,58.874 C 110.628,62.489 110.351,62.429 110.546,66.109" stroke-width="3.914" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 110.546,66.109 C 110.246,70.883 110.438,70.866 110.546,75.629" stroke-width="3.747" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 110.546,75.629 C 111.626,85.902 111.197,85.925 112.449,96.192" stroke-width="2.739" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 112.449,96.192 C 112.395,100.213 112.768,100.182 112.830,104.189" stroke-width="3.418" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 112.830,104.189 C 114.611,114.054 113.917,114.112 115.494,123.990" stroke-width="2.790" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 115.494,123.990 C 115.875,131.230 116.134,131.189 115.875,138.460" stroke-width="2.902" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 115.875,138.460 C 115.589,141.122 115.875,141.130 115.494,143.791" stroke-width="3.712" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 115.494,143.791 C 115.494,146.457 115.399,146.454 115.494,149.123" stroke-width="4.449" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 115.494,149.123 C 115.108,154.738 115.494,151.979 115.494,154.834" stroke-width="4.927" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 115.494,154.834 C 116.575,152.228 115.869,154.928 117.016,149.503" stroke-width="5.239" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 117.016,149.503 C 117.621,145.134 117.717,145.183 117.778,140.745" stroke-width="4.632" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 117.778,140.745 C 117.778,134.462 118.001,134.472 117.778,128.179" stroke-width="4.398" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 117.778,128.179 C 117.875,124.749 117.778,124.752 117.778,121.324" stroke-width="4.593" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 117.778,121.324 C 117.567,118.089 117.685,118.085 117.397,114.851" stroke-width="4.263" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 117.397,114.851 C 117.238,110.851 117.187,110.854 117.016,106.855" stroke-width="4.462" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 117.016,106.855 C 117.018,100.607 116.858,103.997 116.636,101.142" stroke-width="4.939" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 116.636,101.142 C 114.936,105.357 116.067,101.939 115.113,109.520" stroke-width="5.084" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 115.113,109.520 C 115.280,114.804 115.317,114.306 117.397,119.040" stroke-width="4.621" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 117.397,119.040 C 119.326,123.152 119.086,122.420 122.725,124.752" stroke-width="4.109" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 122.725,124.752 C 129.815,127.641 129.032,127.721 136.808,128.179" stroke-width="4.160" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 136.808,128.179 C 139.791,127.522 139.711,128.402 142.517,126.275" stroke-width="4.109" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 142.517,126.275 C 146.607,124.574 146.452,124.475 150.129,122.086" stroke-width="4.154" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 150.129,122.086 C 153.110,119.889 153.077,120.004 155.457,117.136" stroke-width="3.949" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 155.457,117.136 C 158.762,113.377 158.628,113.416 161.166,109.139" stroke-width="4.211" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 161.166,109.139 C 163.866,105.755 162.758,106.333 163.450,103.047" stroke-width="4.541" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 163.450,103.047 C 161.361,98.895 163.105,100.805 159.644,99.238" stroke-width="5.071" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 159.644,99.238 C 157.549,101.788 157.555,99.656 155.838,104.570" stroke-width="4.817" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 155.838,104.570 C 153.987,106.687 154.504,106.739 153.554,109.139" stroke-width="4.665" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 153.554,109.139 C 152.403,113.676 152.845,113.161 153.554,117.517" stroke-width="4.558" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 153.554,117.517 C 155.095,121.802 154.686,121.292 158.121,124.371" stroke-width="4.537" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 158.121,124.371 C 161.921,127.054 161.375,127.133 166.114,128.179" stroke-width="3.916" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 166.114,128.179 C 169.946,128.850 169.724,129.148 173.726,128.560" stroke-width="3.841" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 173.726,128.560 C 179.929,128.075 179.841,128.089 185.905,126.656" stroke-width="3.351" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 185.905,126.656 C 191.474,125.734 191.157,125.409 196.182,123.228" stroke-width="3.291" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 196.182,123.228 C 200.385,120.546 200.418,120.974 203.794,117.136" stroke-width="3.485" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 203.794,117.136 C 205.865,115.082 205.713,115.215 206.839,112.566" stroke-width="3.905" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 206.839,112.566 C 209.596,107.699 208.149,109.179 208.361,105.331" stroke-width="4.380" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 208.361,105.331 C 205.008,103.221 207.312,103.320 202.271,103.808" stroke-width="4.942" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 202.271,103.808 C 199.020,105.158 199.679,104.364 197.704,107.616" stroke-width="4.784" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 197.704,107.616 C 196.126,111.152 196.166,110.489 196.562,114.470" stroke-width="4.669" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 196.562,114.470 C 197.237,118.869 197.077,118.387 199.607,122.086" stroke-width="4.533" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 199.607,122.086 C 202.766,126.802 202.566,126.104 207.219,128.940" stroke-width="3.700" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 207.219,128.940 C 212.972,130.961 212.281,131.371 218.637,131.225" stroke-width="4.030" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 218.637,131.225 C 221.301,130.844 221.155,131.342 223.585,129.702" stroke-width="4.181" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 223.585,129.702 C 226.098,128.570 225.869,128.560 227.772,126.656" stroke-width="4.229" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 227.772,126.656 C 230.412,123.848 230.094,124.000 231.577,120.563" stroke-width="4.495" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 231.577,120.563 C 231.879,114.375 232.506,117.945 231.958,114.851" stroke-width="4.874" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 231.958,114.851 C 230.409,119.491 232.069,115.517 231.958,122.848" stroke-width="5.140" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 231.958,122.848 C 234.773,127.380 233.835,126.916 238.809,129.702" stroke-width="4.581" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 238.809,129.702 C 242.955,131.304 242.385,131.759 247.182,131.606" stroke-width="4.536" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 247.182,131.606 C 251.059,131.571 250.948,131.875 254.794,130.845" stroke-width="4.107" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 254.794,130.845 C 257.868,129.978 257.910,130.238 260.884,128.940" stroke-width="4.095" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 260.884,128.940 C 263.929,127.798 263.958,127.883 266.973,126.656" stroke-width="4.076" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 266.973,126.656 C 271.460,124.659 271.541,124.942 276.108,123.228" stroke-width="4.238" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 276.108,123.228 C 278.939,122.483 278.882,122.375 281.817,122.086" stroke-width="4.204" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 281.817,122.086 C 284.485,121.627 284.458,121.722 287.145,121.705" stroke-width="4.257" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 287.145,121.705 C 291.212,121.358 290.955,121.817 294.757,122.467" stroke-width="4.486" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 294.757,122.467 C 297.672,123.447 297.302,123.262 299.324,125.513" stroke-width="4.730" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 299.324,125.513 C 301.547,128.594 301.478,128.207 302.369,131.987" stroke-width="4.870" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 302.369,131.987 C 303.300,135.390 303.070,134.877 302.369,138.080" stroke-width="4.970" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 302.369,138.080 C 301.097,141.284 301.587,140.341 298.944,141.888" stroke-width="5.062" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 298.944,141.888 C 295.815,141.605 296.339,142.617 292.854,140.745" stroke-width="4.829" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 292.854,140.745 C 289.789,139.972 289.916,139.892 287.145,138.460" stroke-width="4.318" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 287.145,138.460 C 282.855,137.200 284.461,136.926 282.198,134.653" stroke-width="4.613" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 282.198,134.653 C 281.890,129.789 281.332,131.298 284.100,126.656" stroke-width="4.754" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 284.100,126.656 C 287.402,123.344 286.457,123.315 291.332,121.705" stroke-width="4.533" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 291.332,121.705 C 294.727,120.205 294.253,120.488 297.802,120.944" stroke-width="4.663" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 297.802,120.944 C 304.918,122.601 304.242,122.490 310.362,126.275" stroke-width="4.363" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 310.362,126.275 C 313.129,128.869 313.101,128.123 314.168,131.987" stroke-width="4.595" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 314.168,131.987 C 314.820,134.997 315.032,134.581 314.168,137.699" stroke-width="4.940" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 314.168,137.699 C 313.356,140.749 313.488,140.518 311.504,143.030" stroke-width="4.800" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 311.504,143.030 C 307.899,146.469 308.408,146.842 304.272,149.884" stroke-width="4.454" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 304.272,149.884 C 301.445,152.579 301.429,152.562 298.563,155.215" stroke-width="4.016" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 298.563,155.215 C 294.903,158.819 294.784,158.672 290.951,162.070" stroke-width="3.648" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 290.951,162.070 C 286.204,165.701 286.340,165.863 281.436,169.305" stroke-width="3.456" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 281.436,169.305 C 277.675,172.223 277.640,172.174 273.824,175.017" stroke-width="3.506" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 273.824,175.017 C 270.046,177.723 270.063,177.745 266.212,180.348" stroke-width="3.542" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 266.212,180.348 C 262.753,182.584 262.815,182.674 259.361,184.917" stroke-width="3.712" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 259.361,184.917 C 256.741,186.886 256.664,186.773 254.033,188.725" stroke-width="3.991" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 254.033,188.725 C 247.820,191.784 251.413,190.504 248.705,192.153" stroke-width="4.474" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 248.705,192.153 C 253.683,191.561 250.103,192.736 258.600,190.629" stroke-width="4.766" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 258.600,190.629 C 271.798,188.253 271.761,188.134 284.862,185.298" stroke-width="2.607" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 284.862,185.298 C 293.561,182.782 293.683,183.303 302.369,180.728" stroke-width="2.688" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 302.369,180.728 C 313.171,178.202 313.162,178.212 324.064,176.159" stroke-width="2.448" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 324.064,176.159 C 334.513,174.330 334.485,174.204 344.997,172.732" stroke-width="2.486" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 344.997,172.732 C 354.513,171.405 354.494,171.284 364.027,170.066" stroke-width="2.534" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 364.027,170.066 C 366.678,169.496 366.692,169.691 369.355,169.305" stroke-width="3.543" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <path d="M 369.355,169.305 C 372.019,169.305 372.006,169.115 374.683,169.305" stroke-width="3.991" stroke="currentColor" fill="none" stroke-linecap="round"></path>
+                        <circle r="1.5" cx="335.100830078125" cy="150.264892578125" fill="currentColor"></circle>
+                        <circle r="1.5" cx="364.7879638671875" cy="144.93377685546875" fill="currentColor"></circle>
+                    </svg>
+                </a>
+                <div class="flex items-center space-x-5 md:space-x-7">
+                    <nav class="hidden sm:flex items-center space-x-5 md:space-x-7">
+                        <a href="#about" class="nav-link">About</a>
+                        <a href="#education" class="nav-link">Education</a>
+                        <a href="#skills" class="nav-link">Skills</a>
+                        <a href="#projects" class="nav-link">Projects</a>
+                        <a href="#experience" class="nav-link">Experience</a>
+                        <a href="#certificates" class="nav-link">Certificates</a> <a href="#contact" class="nav-link">Contact</a>
+                    </nav>
+                    <button id="themeToggle" class="theme-toggle-button" aria-label="Toggle theme">
+                        <svg class="theme-toggle-icon sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.106a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5h2.25a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18.75a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-1.5a.75.75 0 0 1 .75-.75ZM5.106 17.834a.75.75 0 0 0 1.06 1.06l1.591-1.59a.75.75 0 0 0-1.06-1.061l-1.591 1.59ZM6.25 12a.75.75 0 0 1-.75-.75V9a.75.75 0 0 1 1.5 0v2.25A.75.75 0 0 1 6.25 12ZM6.106 5.106a.75.75 0 0 0-1.06 1.06l1.59 1.591a.75.75 0 0 0 1.061-1.06l-1.59-1.591Z"/></svg>
+                        <svg class="theme-toggle-icon moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 0 1 .162.819A8.97 8.97 0 0 0 9.5 6.75c0 5.508 4.492 9.999 10 9.999a8.97 8.97 0 0 0 5.215-.662.75.75 0 0 1 .818.162l.515.515a.75.75 0 0 1-.03.986A11.25 11.25 0 0 1 12.5 21.75c-6.21 0-11.25-5.04-11.25-11.25 0-4.341 2.426-8.116 6.032-9.968l.515-.515Z" clip-rule="evenodd" /></svg>
+                    </button>
+                     <button id="mobileMenuButton" class="sm:hidden p-2 rounded-md text-[var(--theme-text-secondary)] hover:text-[var(--theme-accent)] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[var(--theme-accent)]">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+             <div id="mobileMenu" class="hidden sm:hidden mt-2 space-y-1">
+                <a href="#about" class="nav-link block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#education" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Education</a>
+                <a href="#skills" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Skills</a>
+                <a href="#projects" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Projects</a>
+                <a href="#experience" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Experience</a>
+                <a href="#certificates" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Certificates</a>
+                <a href="#contact" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero">
+        <p class="hero-intro-text">Crafting Digital Experiences</p>
+        <div class="hero-name-container">
+            <div class="hero-name-text">
+                <span class="hero-name-line1">JEEVAN</span>
+                <span class="hero-name-line2">GOWDA</span>
+            </div>
+            <div class="hero-image-overlay">
+                <img src="https://i.ibb.co/Z6WRTv8N/468495821-923524119741853-6036090362314898479-n.jpg" 
+                     alt="Jeevan Gowda Overlay"
+                     onerror="this.onerror=null;this.src='https://placehold.co/300x300/1e293b/9ca3af?text=Profile';"
+                     >
+            </div>
+        </div>
+        <div class="scroll-down-indicator">
+            <a href="#about" aria-label="Scroll to about section">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container-custom">
+            <h2 class="section-title-villo animate-scroll-reveal">About Me</h2>
+            <p class="section-subtitle animate-scroll-reveal" style="transition-delay: 0.05s;">Driven by curiosity and a passion for technology.</p>
+            <div class="about-grid mt-12">
+                <div class="about-text animate-scroll-reveal" style="transition-delay: 0.15s;">
+                    <p>
+                        Hello! I'm Jeevan Gowda, a student with a keen interest in the ever-evolving world of technology. My journey began at St Josephine Public School, where I completed my 10th standard in 2023.
+                    </p>
+                    <p>
+                        Currently, I'm pursuing my Pre-University Course, having completed my 1st PUC at Mangalore Independent PU College and now preparing for my 2nd PUC at JS PU COLLEGE.
+                    </p>
+                    <p>
+                        I'm actively learning <strong>Python</strong> and also have experience with <strong>PHP</strong>. This is complemented by my foundational knowledge of web technologies like <strong>HTML</strong> and <strong>CSS</strong>. I'm passionate about how these tools can be used to create impactful and user-friendly digital experiences.
+                    </p>
+                    <p>
+                        I believe in continuous learning and am always looking for opportunities to expand my skillset and contribute to exciting projects.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="section-break-icon animate-scroll-reveal">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12.963 2.286a.75.75 0 0 0-1.071 1.05L15.303 7.5H4.125A5.625 5.625 0 0 0 4.125 18.75h11.178l-3.41-4.172a.75.75 0 1 0-1.178 1.05l4.5 5.25a.75.75 0 0 0 1.178 0l4.5-5.25a.75.75 0 0 0-1.178-1.05L19.875 15H4.125a4.125 4.125 0 0 1 0-8.25h11.178l-3.41-4.172a.75.75 0 0 0-1.071-1.05Z" clip-rule="evenodd" /></svg>
+    </div>
+
+    <section id="education" class="section">
+        <div class="container-custom">
+            <h2 class="section-title-villo animate-scroll-reveal">Education</h2>
+            <p class="section-subtitle animate-scroll-reveal" style="transition-delay: 0.05s;">My academic journey and foundational learning experiences.</p>
+            <div class="mt-12 space-y-10 staggered-appear-villo"> 
+                <div class="content-entry animate-scroll-reveal">
+                    <div class="entry-header">
+                        <h3 class="entry-title">St Josephine Public School</h3>
+                        <p class="entry-meta">Graduated: 2023</p>
+                    </div>
+                    <p class="entry-subtitle">1st to 10th Standard</p>
+                </div>
+                <div class="content-entry animate-scroll-reveal">
+                     <div class="entry-header">
+                        <h3 class="entry-title">Mangalore Independent PU College</h3>
+                        <p class="entry-meta">Completed</p>
+                    </div>
+                    <p class="entry-subtitle">1st PUC (Pre-University Course)</p>
+                </div>
+                <div class="content-entry animate-scroll-reveal">
+                    <div class="entry-header">
+                        <h3 class="entry-title">JS PU COLLEGE</h3>
+                        <p class="entry-meta">Currently Enrolled</p>
+                    </div>
+                    <p class="entry-subtitle">2nd PUC (Pre-University Course)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section"> 
+        <div class="container-custom">
+            <h2 class="section-title-villo animate-scroll-reveal">Skills</h2>
+            <p class="section-subtitle animate-scroll-reveal" style="transition-delay: 0.05s;">The technologies and tools I'm proficient in and currently exploring.</p>
+            <div class="grid md:grid-cols-2 gap-x-8 gap-y-6 mt-12 staggered-appear-villo">
+                <div class="skill-item-villo animate-scroll-reveal">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 2.00342C6.47811 2.00342 2.00098 6.48055 2.00098 12.0034C2.00098 17.5263 6.47811 22.0034 12.001 22.0034C17.5238 22.0034 22.001 17.5263 22.001 12.0034C22.001 6.48055 17.5238 2.00342 12.001 2.00342ZM12.001 20.0034C7.58211 20.0034 4.00098 16.4223 4.00098 12.0034C4.00098 7.58455 7.58211 4.00342 12.001 4.00342C16.4198 4.00342 20.001 7.58455 20.001 12.0034C20.001 16.4223 16.4198 20.0034 12.001 20.0034ZM11.001 15.0034H8.00098V17.0034H11.001V15.0034ZM11.001 11.0034H8.00098V13.0034H11.001V11.0034ZM11.001 7.00342H8.00098V9.00342H11.001V7.00342ZM16.001 15.0034H13.001V17.0034H16.001V15.0034ZM16.001 11.0034H13.001V13.0034H16.001V11.0034ZM16.001 7.00342H13.001V9.00342H16.001V7.00342Z"></path></svg>
+                    <div>
+                        <h4 class="skill-name-villo">Python</h4>
+                        <p class="skill-description-villo">Actively learning for backend logic and application development.</p>
+                    </div>
+                </div>
+                <div class="skill-item-villo animate-scroll-reveal">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1.25 14.594A.75.75 0 0 0 11.5 16V8a.75.75 0 0 0-1.5 0v7.25c0 .304.176.578.445.703a.752.752 0 0 0 .305.041zm4.504-3.844a.75.75 0 0 0-1.061 0l-1.25 1.25a.75.75 0 0 0 0 1.06l1.25 1.25a.75.75 0 0 0 1.06-1.06L14.31 13l1.188-1.188a.75.75 0 0 0 0-1.062zM8.5 13a.75.75 0 0 0 0-1.5H7a.75.75 0 0 0 0 1.5h1.5z"/></svg>
+                    <div>
+                        <h4 class="skill-name-villo">PHP</h4>
+                        <p class="skill-description-villo">Experience with server-side scripting and web application logic.</p>
+                    </div>
+                </div>
+                <div class="skill-item-villo animate-scroll-reveal">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2.00098 2.00336V22.0034H22.001V2.00336H2.00098ZM10.001 14.0034L8.00098 12.0034L10.001 10.0034V8.00336L4.00098 12.0034L10.001 16.0034V14.0034ZM14.001 16.0034L20.001 12.0034L14.001 8.00336V10.0034L16.001 12.0034L14.001 14.0034V16.0034Z"></path></svg>
+                    <div>
+                        <h4 class="skill-name-villo">HTML5</h4>
+                        <p class="skill-description-villo">Solid understanding of semantic HTML for web structure.</p>
+                    </div>
+                </div>
+                <div class="skill-item-villo animate-scroll-reveal">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2.00098 2.00336V22.0034H22.001V2.00336H2.00098ZM10.001 16.0034H7.00098L6.00098 13.0034H10.001V11.0034H5.00098L4.00098 7.00336H11.001V9.00336H7.00098L7.50098 10.0034H10.001V12.0034H6.50098L7.00098 14.0034H10.001V16.0034ZM19.001 16.0034H13.001L12.501 14.5034L15.001 13.0034L12.501 11.5034L13.001 10.0034H19.001L19.501 11.5034L17.001 13.0034L19.501 14.5034L19.001 16.0034Z"></path></svg>
+                    <div>
+                        <h4 class="skill-name-villo">CSS3 & Tailwind CSS</h4>
+                        <p class="skill-description-villo">Proficient in styling and creating responsive user interfaces.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container-custom">
+            <h2 class="section-title-villo animate-scroll-reveal">Projects</h2>
+            <p class="section-subtitle animate-scroll-reveal" style="transition-delay: 0.05s;">Showcasing my practical application of skills.</p>
+            <div class="grid md:grid-cols-2 gap-8 mt-12 staggered-appear-villo">
+                <div class="content-entry animate-scroll-reveal">
+                    <div class="entry-header">
+                        <h3 class="entry-title"><a href="https://mathcreations.in" target="_blank" rel="noopener noreferrer">mathcreations.in</a></h3>
+                        <p class="entry-meta">Live Website</p>
+                    </div>
+                    <p class="entry-subtitle">Ad Agency</p>
+                    <p class="entry-description">A web application focused on providing BTL ATL Services.</p>
+                </div>
+                 <div class="content-entry animate-scroll-reveal">
+                     <div class="entry-header">
+                        <h3 class="entry-title">Employee Management System</h3>
+                        <p class="entry-meta">Conceptual Project</p>
+                    </div>
+                    <p class="entry-subtitle">PHP & Database Application</p>
+                    <p class="entry-description">A system designed to manage employee data, track attendance, and handle administrative tasks within an organization.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section"> 
+        <div class="container-custom">
+            <h2 class="section-title-villo animate-scroll-reveal">Experience</h2>
+            <p class="section-subtitle animate-scroll-reveal" style="transition-delay: 0.05s;">Gaining practical knowledge and applying skills.</p>
+             <div class="mt-12 space-y-10 staggered-appear-villo">
+                <div class="content-entry animate-scroll-reveal">
+                    <div class="entry-header">
+                        <h3 class="entry-title">Internship</h3>
+                        <p class="entry-meta">Infosys</p>
+                    </div>
+                    <p class="entry-subtitle">Role/Department (e.g., Software Development Intern)</p>
+                    <p class="entry-description">Completed an internship at Infosys, gaining valuable industry experience and contributing to projects. (You can add more specific details about your role and accomplishments here).</p>
+                </div>
+                 <div class="content-entry animate-scroll-reveal">
+                    <div class="entry-header">
+                        <h3 class="entry-title">Aspiring Developer & Tech Enthusiast</h3>
+                        <p class="entry-meta">Current</p>
+                    </div>
+                    <p class="entry-subtitle">Self-driven Learning & Exploration</p>
+                    <p class="entry-description">Currently focused on expanding my knowledge in Python, web development, and exploring new technologies to build a strong foundation for future projects and collaborations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="certificates" class="section bg-[var(--theme-certificates-section-bg)]">
+        <div class="container-custom">
+            <h2 class="section-title-villo animate-scroll-reveal">Certificates & Learning</h2>
+            <p class="section-subtitle animate-scroll-reveal" style="transition-delay: 0.05s;">Continuous learning and skill development through online platforms.</p>
+            <div class="grid md:grid-cols-2 gap-6 mt-12 staggered-appear-villo">
+                <div class="certificate-item animate-scroll-reveal">
+                    <h3 class="certificate-title">Udemy Certificates</h3>
+                    <p class="certificate-platform">Various courses completed on Udemy. (List specific important ones if you like)</p>
+                </div>
+                <div class="certificate-item animate-scroll-reveal">
+                    <h3 class="certificate-title">LinkedIn Learning</h3>
+                    <p class="certificate-platform">Completed courses and skill assessments on LinkedIn Learning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact" class="section">
+        <div class="container-custom text-center">
+            <h2 class="section-title-villo animate-scroll-reveal">Get In Touch</h2>
+            <p class="section-subtitle animate-scroll-reveal" style="transition-delay: 0.05s;">
+                Interested in working together or have a question? I'm always open to new ideas and collaborations.
+            </p>
+            <div class="mt-12 animate-scroll-reveal" style="transition-delay: 0.1s;">
+                <a href="mailto:jeevangowda76@gmail.com" class="contact-button-villo">
+                    Say Hello
+                </a>
+                <p class="mt-8 text-sm text-[var(--theme-text-tertiary)]"> 
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-villo">
+        <div class="marquee-container animate-scroll-reveal">
+            <div class="marquee-content">
+                <span>JEEVAN GOWDA</span><span class="accent-marquee">◉</span>
+                <span>PYTHON & PHP</span><span class="accent-marquee">◉</span>
+                <span>WEB ENTHUSIAST</span><span class="accent-marquee">◉</span>
+                <span>MODERN DESIGN</span><span class="accent-marquee">◉</span>
+                <span>JEEVAN GOWDA</span><span class="accent-marquee">◉</span>
+                <span>PYTHON & PHP</span><span class="accent-marquee">◉</span>
+                <span>WEB ENTHUSIAST</span><span class="accent-marquee">◉</span>
+                <span>MODERN DESIGN</span><span class="accent-marquee">◉</span>
+                <span>JEEVAN GOWDA</span><span class="accent-marquee">◉</span>
+                <span>PYTHON & PHP</span><span class="accent-marquee">◉</span>
+                <span>WEB ENTHUSIAST</span><span class="accent-marquee">◉</span>
+                <span>MODERN DESIGN</span><span class="accent-marquee">◉</span>
+            </div>
+        </div>
+        <div class="container-custom text-center footer-text">
+            <p>&copy; <span id="currentYear"></span> Jeevan Gowda. All Rights Reserved.</p>
+            <p class="mt-2">
+                Connect: 
+                <a href="#" class="footer-link">LinkedIn</a> / 
+                <a href="#" class="footer-link">GitHub</a> 
+                
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Theme toggle logic
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                htmlElement.classList.add('dark-theme');
+                htmlElement.style.setProperty('--theme-accent-rgb-for-hover', '224, 241, 31');
+            } else {
+                htmlElement.classList.remove('dark-theme');
+                htmlElement.style.setProperty('--theme-accent-rgb-for-hover', '59, 130, 246');
+            }
+        }
+        
+        let currentTheme = localStorage.getItem('theme');
+        if (!currentTheme) {
+            currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        applyTheme(currentTheme);
+
+
+        themeToggle.addEventListener('click', () => {
+            const newTheme = htmlElement.classList.contains('dark-theme') ? 'light' : 'dark';
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+            setTimeout(updateHeaderHeightAndScrollPadding, 50);
+        });
+
+
+        function splitTextAndAnimateHero(selector, baseDelay = 0.3, charDelay = 0.04) {
+            document.querySelectorAll(selector).forEach(element => {
+                const lineText = element.textContent.trim();
+                element.innerHTML = ''; 
+                let cumulativeDelay = baseDelay;
+                lineText.split('').forEach((char) => {
+                    const charSpan = document.createElement('span');
+                    if (char === ' ') {
+                        charSpan.innerHTML = '&nbsp;';
+                        charSpan.classList.add('space-char'); 
+                    } else {
+                        charSpan.textContent = char;
+                    }
+                    charSpan.classList.add('char');
+                    charSpan.style.animationDelay = `${cumulativeDelay}s`;
+                    element.appendChild(charSpan);
+                    cumulativeDelay += charDelay;
+                });
+            });
+        }
+
+        splitTextAndAnimateHero('.hero-name .hero-name-line1', 0.5, 0.06); 
+        splitTextAndAnimateHero('.hero-name .hero-name-line2', 0.9, 0.06); 
+        
+        const animatedElements = document.querySelectorAll('.animate-scroll-reveal, .staggered-appear-villo');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    if (entry.target.classList.contains('staggered-appear-villo')) {
+                        const children = Array.from(entry.target.children);
+                        children.forEach((child, i) => {
+                            if (child instanceof HTMLElement) {
+                                child.style.transitionDelay = (i * 0.12) + 's';
+                            }
+                        });
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.05 }); 
+
+        animatedElements.forEach(el => { observer.observe(el); });
+
+        const header = document.querySelector('header');
+        let headerHeight = header ? header.offsetHeight : 70; 
+        
+        function updateHeaderHeightAndScrollPadding() {
+            if (header) headerHeight = header.offsetHeight;
+            document.documentElement.style.scrollPaddingTop = headerHeight + 'px';
+        }
+        
+        window.addEventListener('load', updateHeaderHeightAndScrollPadding);
+        window.addEventListener('resize', updateHeaderHeightAndScrollPadding);
+
+        const navLinks = document.querySelectorAll('.nav-link'); // Selects both desktop and mobile
+        const pageSections = document.querySelectorAll('section[id]'); 
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if(mobileMenuButton && mobileMenu){
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            // Close mobile menu when a link inside it is clicked
+            mobileMenu.querySelectorAll('a.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        function changeActiveLink() {
+            let fromTop = window.scrollY + headerHeight + Math.floor(window.innerHeight * 0.4); 
+            let currentSectionId = null;
+
+            pageSections.forEach(section => {
+                if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+                    currentSectionId = section.id;
+                }
+            });
+            
+            if ((window.innerHeight + Math.ceil(window.scrollY)) >= document.body.offsetHeight -2 ) { 
+                 currentSectionId = pageSections[pageSections.length - 1].id;
+            }
+
+            const allNavLinks = document.querySelectorAll('.nav-link'); 
+            allNavLinks.forEach(link => {
+                link.classList.remove('active');
+                const linkHref = link.getAttribute('href');
+                if (linkHref && linkHref.substring(1) === currentSectionId) {
+                    link.classList.add('active');
+                }
+            });
+            
+            if (window.scrollY < pageSections[0].offsetTop - headerHeight - 50 && currentSectionId === 'hero') { 
+                 allNavLinks.forEach(link => link.classList.remove('active'));
+            }
+        }
+        
+        window.addEventListener('scroll', changeActiveLink);
+        document.addEventListener('DOMContentLoaded', () => {
+            updateHeaderHeightAndScrollPadding(); 
+            changeActiveLink(); 
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#hero') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - headerHeight;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
